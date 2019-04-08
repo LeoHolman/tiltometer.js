@@ -1,0 +1,70 @@
+body {
+    background-color: #555555;
+}
+
+img {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+}
+
+button {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 1.6vw;
+}
+
+#journal {
+    position: absolute;
+    top: 24.4vw;
+    left: 23.9vw;
+}
+
+#magazine {
+    position: absolute;
+    top: 26.5vw;
+    left: 23vw;
+}
+
+#newspaper {
+    position: absolute;
+    top: 28.8vw;
+    left: 23vw;
+}
+
+#book {
+    position: absolute;
+    top: 31.1vw;
+    left: 24.2vw;
+}
+
+#encyclopedia {
+    position: absolute;
+    top: 33.4vw;
+    left: 21vw;
+}
+
+#web {
+    position: absolute;
+    top: 35.7vw;
+    left: 24vw;
+}
+
+#email {
+    position: absolute;
+    top: 38vw;
+    left: 24vw;
+}
+
+#periodical-database {
+    position: absolute;
+    top: 40.2vw;
+    left: 19vw;
+}
+
+#library-catalog {
+    position: absolute;
+    top: 42.7vw;
+    left: 20vw;
+}
