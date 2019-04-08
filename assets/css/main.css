@@ -2,12 +2,27 @@ body {
     background-color: #555555;
 }
 
-img {
+#background {
     display: block;
     width: 70%;
     margin: 0 auto;
 }
 
+#pointer {
+    position: absolute;
+    top: 27vw;
+    left: 38vw;
+    width: 14vw;
+}
+
+#cylinder {
+    position: absolute;
+    top: 32vw;
+    left: 35vw;
+    width: 20.5vw;
+}
+
+/* Begin button styles */
 button {
     padding: 0;
     border: none;
