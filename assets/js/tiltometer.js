@@ -58,6 +58,43 @@ const answerCodes = { //correlate button types with answer codes
     "library-catalog"     : "9"
 }
 
+//Wire up buttons
+document.getElementById("journal").addEventListener("click", () => {
+    checkAnswer("journal");
+});
+
+document.getElementById("magazine").addEventListener("click", () => {
+    checkAnswer("magazine");
+});
+
+document.getElementById("newspaper").addEventListener("click", () => {
+    checkAnswer("newspaper");
+});
+
+document.getElementById("book").addEventListener("click", () => {
+    checkAnswer("book");
+});
+
+document.getElementById("encyclopedia").addEventListener("click", () => {
+    checkAnswer("encyclopedia");
+});
+
+document.getElementById("web").addEventListener("click", () => {
+    checkAnswer("web");
+});
+
+document.getElementById("email").addEventListener("click", () => {
+    checkAnswer("email");
+});
+
+document.getElementById("periodical-database").addEventListener("click", () => {
+    checkAnswer("periodical-database");
+});
+
+document.getElementById("library-catalog").addEventListener("click", () => {
+    checkAnswer("library-catalog");
+});
+
 function setResponseScreenText(string){
     responseScreenText.innerHTML = string;
 }
@@ -110,7 +147,6 @@ function checkAnswer(buttonName){
 
 //Ask first question
 nextQuestion();
-// checkAnswer("email");
 
 //Take rotation function from stack overflow answer https://stackoverflow.com/questions/3020904/how-to-rotate-a-div-using-jquery
 //Not yet implemented
