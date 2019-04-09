@@ -1,7 +1,9 @@
 $('img[usemap]').imageMap(); //Make image map responsive
 
-var questions = {
-    "1" : {
+const questionScreenText = document.getElementById("questionScreenText");
+const responseScreenText = document.getElementById("responseScreenText");
+const questions = { //list questions and answers
+    "1" : {         //answers are coded, codes explained in answerCodes
         "question" : "Write a research paper on censorship and the Internet",
         "Correct" : [1,2,4,8,9],
         "Almost" : [3,5,6],
@@ -44,6 +46,49 @@ var questions = {
         "False" : []
     },
 };
+const answerCodes = { //correlate button types with answer codes
+    "journal"             : "1", 
+    "magazine"            : "2",
+    "newspaper"           : "3",
+    "book"                : "4",
+    "encyclopedia"        : "5",
+    "web"                 : "6",
+    "email"               : "7",
+    "periodical-database" : "8",
+    "library-catalog"     : "9"
+}
+
+function setResponseScreenText(string){
+    responseScreenText.innerHTML = string;
+}
+
+function setQuestionScreenText(string){
+    questionScreenText.innerHTML = string;
+}
+
+//Initalize to 0 so first question appears
+var thisQuestionNumber = 0;
+
+function nextQuestion(){
+    thisQuestionNumber++;
+    setQuestionScreenText(questions[thisQuestionNumber].question);
+}
+
+function checkAnswer(buttonName){
+    for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Correct).length; i++){
+        if(answerCodes[buttonName] == questions[thisQuestionNumber].Correct[i]){
+            //setPointer(correct);
+            setResponseScreenText("Correct!");
+            break;
+        }
+    }    
+}
+
+
+
+//Ask first question
+nextQuestion();
+checkAnswer("journal");
 
 //Take rotation function from stack overflow answer https://stackoverflow.com/questions/3020904/how-to-rotate-a-div-using-jquery
 //Not yet implemented
