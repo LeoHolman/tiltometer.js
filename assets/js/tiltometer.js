@@ -84,8 +84,6 @@ function checkAnswer(buttonName){
     }    
 }
 
-
-
 //Ask first question
 nextQuestion();
 checkAnswer("journal");
