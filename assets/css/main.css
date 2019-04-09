@@ -1,5 +1,6 @@
 body {
     background-color: #555555;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #background {
@@ -21,6 +22,35 @@ body {
     left: 35vw;
     width: 20.5vw;
 }
+
+#questionScreen {
+    position: absolute;
+    top: 6vw;
+    left: 35.3vw;
+    width: 34vw;
+    height: 11vw;
+    color: red;
+    font-size: 2.4vw;   
+    text-align: center;
+}
+
+#responseScreen {
+    position: absolute;
+    /* background-color: red; */
+    top: 25vw;
+    left: 59vw;
+    width: 21vw;
+    height: 17vw;
+    color: white;
+    font-size: 2.4vw;   
+    text-align: center;
+}
+
+#responseScreen>p{
+    position: relative;
+    top: 25%;
+}
+
 
 /* Begin button styles */
 button {
@@ -83,3 +113,5 @@ button {
     top: 42.7vw;
     left: 20vw;
 }
+
+/* End Button Styles */
