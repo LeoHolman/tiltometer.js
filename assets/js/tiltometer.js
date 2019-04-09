@@ -75,18 +75,42 @@ function nextQuestion(){
 }
 
 function checkAnswer(buttonName){
-    for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Correct).length; i++){
-        if(answerCodes[buttonName] == questions[thisQuestionNumber].Correct[i]){
-            //setPointer(correct);
-            setResponseScreenText("Correct!");
-            break;
+    let found = false;
+    if(!found){
+        for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Correct).length; i++){ //search for answer in correct
+            if(answerCodes[buttonName] == questions[thisQuestionNumber].Correct[i]){
+                //setPointer(correct);
+                setResponseScreenText("Correct!");
+                found = true;
+                break;
+            }
+        }
+    }
+    if(!found){ //if not found in correct search almost
+        for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Almost).length; i++){
+            if(answerCodes[buttonName] == questions[thisQuestionNumber].Almost[i]){
+                //setPointer(correct);
+                setResponseScreenText("Almost!");
+                found = true;
+                break;
+            }
+        }
+    }
+    if(!found){ //if not found in correct or almost search false
+        for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].False).length; i++){
+            if(answerCodes[buttonName] == questions[thisQuestionNumber].False[i]){
+                //setPointer(correct);
+                setResponseScreenText("False!");
+                found = true;
+                break;
+            }
         }
     }    
 }
 
 //Ask first question
 nextQuestion();
-checkAnswer("journal");
+// checkAnswer("email");
 
 //Take rotation function from stack overflow answer https://stackoverflow.com/questions/3020904/how-to-rotate-a-div-using-jquery
 //Not yet implemented
