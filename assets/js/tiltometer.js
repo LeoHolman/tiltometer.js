@@ -45,6 +45,9 @@ const questions = { //list questions and answers
         "Almost" : [3,5,6,7],
         "False" : []
     },
+    "8" : {
+        "question" : "You have successfully filled all seven requests"
+    }
 };
 const answerCodes = { //correlate button types with answer codes
     "journal"             : "1", 
@@ -107,42 +110,47 @@ function setQuestionScreenText(string){
 var thisQuestionNumber = 0;
 
 function nextQuestion(){
-    thisQuestionNumber++;
-    setQuestionScreenText(questions[thisQuestionNumber].question);
+    if(thisQuestionNumber < Object.keys(questions).length){
+        thisQuestionNumber++;
+        setQuestionScreenText(questions[thisQuestionNumber].question);
+    }
 }
 
 function checkAnswer(buttonName){
     let found = false;
-    if(!found){
-        for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Correct).length; i++){ //search for answer in correct
-            if(answerCodes[buttonName] == questions[thisQuestionNumber].Correct[i]){
-                //setPointer(correct);
-                setResponseScreenText("Correct!");
-                found = true;
-                break;
+    if(!(questions[thisQuestionNumber].question == "You have successfully filled all seven requests")){ //check to see if at end of questions, skip checking process if at the end
+        if(!found){ //search for answer in correct
+            for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Correct).length; i++){ 
+                if(answerCodes[buttonName] == questions[thisQuestionNumber].Correct[i]){
+                    //setPointer(correct);
+                    setResponseScreenText("Correct!");
+                    found = true;
+                    break;
+                }
             }
         }
+        if(!found){ //if not found in correct search almost
+            for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Almost).length; i++){
+                if(answerCodes[buttonName] == questions[thisQuestionNumber].Almost[i]){
+                    //setPointer(correct);
+                    setResponseScreenText("Almost!");
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if(!found){ //if not found in correct or almost search false
+            for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].False).length; i++){
+                if(answerCodes[buttonName] == questions[thisQuestionNumber].False[i]){
+                    //setPointer(correct);
+                    setResponseScreenText("False!");
+                    found = true;
+                    break;
+                }
+            }
+        }    
+        nextQuestion();
     }
-    if(!found){ //if not found in correct search almost
-        for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Almost).length; i++){
-            if(answerCodes[buttonName] == questions[thisQuestionNumber].Almost[i]){
-                //setPointer(correct);
-                setResponseScreenText("Almost!");
-                found = true;
-                break;
-            }
-        }
-    }
-    if(!found){ //if not found in correct or almost search false
-        for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].False).length; i++){
-            if(answerCodes[buttonName] == questions[thisQuestionNumber].False[i]){
-                //setPointer(correct);
-                setResponseScreenText("False!");
-                found = true;
-                break;
-            }
-        }
-    }    
 }
 
 //Ask first question
