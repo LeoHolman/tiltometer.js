@@ -156,20 +156,25 @@ function checkAnswer(buttonName){
 //Ask first question
 nextQuestion();
 
-//Take rotation function from stack overflow answer https://stackoverflow.com/questions/3020904/how-to-rotate-a-div-using-jquery
-//Not yet implemented
-
-// var rotation = 0;
-
-// jQuery.fn.rotate = function(degrees) {
-//     $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
-//                  '-moz-transform' : 'rotate('+ degrees +'deg)',
-//                  '-ms-transform' : 'rotate('+ degrees +'deg)',
-//                  'transform' : 'rotate('+ degrees +'deg)'});
-//     return $(this);
-// };
-
-// $('.rotate').click(function() {
-//     rotation += 5;
-//     $(this).rotate(rotation);
-// }); 
+//jQuery rotate plugin
+function rotatePointer(correctness){
+    $("#pointer").rotate({
+        angle: 0,
+        animateTo: -70,
+        duration: 1000
+    });
+    setTimeout( () => {
+        $("#pointer").stopRotate();
+    }, 500);
+    if(correctness == "correct"){
+        setTimeout( () => {
+            let currentAngle = $("#pointer").getRotateAngle();
+            $("#pointer").rotate({
+                angle: currentAngle,
+                animateTo: 70,
+                duration: 2000
+            });
+        }, 600);
+    }
+}
+rotatePointer("correct");
