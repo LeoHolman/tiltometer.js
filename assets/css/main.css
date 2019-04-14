@@ -3,6 +3,14 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+button {
+    color: green;
+}
+
+button:hover {
+    color: red;
+}
+
 #background {
     display: block;
     width: 70%;
