@@ -59,60 +59,21 @@ button:hover {
     top: 25%;
 }
 
+#buttonWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    width: 18vw;
+    height: 20.3vw;
+    top: 24.3vw;
+    left: 17vw;
+}
 
-/* Begin button styles */
 button {
     padding: 0;
     border: none;
     background: none;
     font-size: 1.6vw;
     width: 18vw;
-    left: 17vw;
 }
-
-#journal {
-    position: absolute;
-    top: 24.4vw;
-}
-
-#magazine {
-    position: absolute;
-    top: 26.5vw;
-}
-
-#newspaper {
-    position: absolute;
-    top: 28.8vw;
-}
-
-#book {
-    position: absolute;
-    top: 31.1vw;
-}
-
-#encyclopedia {
-    position: absolute;
-    top: 33.4vw;
-}
-
-#web {
-    position: absolute;
-    top: 35.7vw;
-}
-
-#email {
-    position: absolute;
-    top: 38vw;
-}
-
-#periodical-database {
-    position: absolute;
-    top: 40.2vw;
-}
-
-#library-catalog {
-    position: absolute;
-    top: 42.7vw;
-}
-
-/* End Button Styles */
