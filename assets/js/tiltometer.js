@@ -137,7 +137,6 @@ function checkAnswer(buttonName){
                 if(answerCodes[buttonName] == questions[thisQuestionNumber].Almost[i]){
                     rotatePointer("almost").then( () => {
                         setResponseScreenText("Almost!");
-                        setTimeout(nextQuestion, 500);
                     });
                     found = true;
                     break;
@@ -149,7 +148,6 @@ function checkAnswer(buttonName){
                 if(answerCodes[buttonName] == questions[thisQuestionNumber].False[i]){
                     rotatePointer("false").then( ()=>{
                         setResponseScreenText("False!");
-                        setTimeout(nextQuestion, 500);
                     });
                     found = true;
                     break;
