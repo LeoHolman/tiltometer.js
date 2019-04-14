@@ -156,9 +156,9 @@ function checkAnswer(buttonName){
 //Ask first question
 nextQuestion();
 
-//
+//Rotates one segment, returns a promise to allow the first segment to finish before chaining the next
 function rotatePointerPromise(angle, animateTo, duration){
-    return new Promise(function(resolve){
+    return new Promise( (resolve) => {
         $("#pointer").rotate({
             angle: angle,
             animateTo: animateTo,
@@ -172,37 +172,52 @@ function rotatePointerPromise(angle, animateTo, duration){
 
 
 //jQuery rotate plugin
+//Returns promise to allow rotation to finish before next action is taken
 function rotatePointer(correctness){
-    if(correctness == "correct"){
-        rotatePointerPromise(0,-70,1000)
-            .then( ()=>{
-                let currentAngle = $("#pointer").getRotateAngle();
-                rotatePointerPromise(currentAngle,70,1000);
-            });
-    } else if(correctness == "almost"){
-        rotatePointerPromise(0,-70,1000)
-            .then( () => {
-                let currentAngle = $("#pointer").getRotateAngle();
-                rotatePointerPromise(currentAngle,70,1000)
-                    .then( ()=> {
-                        let currentAngle = $("#pointer").getRotateAngle();
-                        rotatePointerPromise(currentAngle,-5,1000);
-                    });
-            });
-    } else if(correctness == "false"){
-        rotatePointerPromise(0,-70,1000)
-            .then( ()=>{
-                let currentAngle = $("#pointer").getRotateAngle();
-                rotatePointerPromise(currentAngle,70,1000)
-                    .then( () => {
-                        let currentAngle = $("#pointer").getRotateAngle();
-                        rotatePointerPromise(currentAngle,-50,1000)
-                    });
-            });
-    }
+    return new Promise( (resolve)=> {
+        if(correctness == "correct"){
+            rotatePointerPromise(0,-70,1000)
+                .then( ()=>{
+                    let currentAngle = $("#pointer").getRotateAngle();
+                    rotatePointerPromise(currentAngle,70,1000)
+                        .then( () => {
+                            resolve();
+                        });
+                });
+        } else if(correctness == "almost"){
+            rotatePointerPromise(0,-70,1000)
+                .then( () => {
+                    let currentAngle = $("#pointer").getRotateAngle();
+                    rotatePointerPromise(currentAngle,70,1000)
+                        .then( ()=> {
+                            let currentAngle = $("#pointer").getRotateAngle();
+                            rotatePointerPromise(currentAngle,-5,1000)
+                            .then( () => {
+                                resolve();
+                            });
+                        });
+                });
+        } else if(correctness == "false"){
+            rotatePointerPromise(0,-70,1000)
+                .then( ()=>{
+                    let currentAngle = $("#pointer").getRotateAngle();
+                    rotatePointerPromise(currentAngle,70,1000)
+                        .then( () => {
+                            let currentAngle = $("#pointer").getRotateAngle();
+                            rotatePointerPromise(currentAngle,-50,1000)
+                                .then( () => {
+                                    resolve();
+                                });
+                        });
+                });
+        }
+    });
 }
 
 
 
-rotatePointer("false");
+// rotatePointer("false").then(
+//     () => {
+//         rotatePointer("correct");
+//     });
 
