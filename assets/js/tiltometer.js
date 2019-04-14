@@ -117,6 +117,7 @@ function nextQuestion(){
 }
 
 function checkAnswer(buttonName){
+    setResponseScreenText("");
     let found = false;
     if(!(questions[thisQuestionNumber].question == "You have successfully filled all seven requests")){ //check to see if at end of questions, skip checking process if at the end
         if(!found){ //search for answer in correct
