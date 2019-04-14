@@ -44,7 +44,6 @@ button:hover {
 
 #responseScreen {
     position: absolute;
-    /* background-color: red; */
     top: 25vw;
     left: 59vw;
     width: 21vw;
@@ -75,5 +74,55 @@ button {
     border: none;
     background: none;
     font-size: 1.6vw;
-    width: 18vw;
+}
+
+
+@media only screen and (max-width: 900px){
+    #background{
+        width: 100%;
+    }
+
+    #questionScreen{
+        width: 50vw;
+        height: 15vw;
+        top: 10vw;
+        left: 28vw;
+        font-size: 4vw;
+        /* background-color: red; */
+    }
+
+    #responseScreen{
+        width: 30vw;
+        height: 25vw;
+        top: 35.5vw;
+        left: 62.5vw;
+        font-size: 4vw;
+    }
+
+    #pointer{
+        width: 22vw;
+        top: 38.4vw;
+        left: 32vw;
+    }
+
+    #cylinder{
+        width: 29vw;
+        top: 46vw;
+        left: 29vw;
+    }
+
+    #buttonWrapper{
+        width: 22.5vw;
+        height: 28vw;
+        top: 35vw;
+        left: 6vw;
+    }
+
+    button{
+        font-size: 2.3vw;
+    }
+    
+
+    
+
 }
