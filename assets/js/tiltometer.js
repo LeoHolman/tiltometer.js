@@ -122,8 +122,10 @@ function checkAnswer(buttonName){
         if(!found){ //search for answer in correct
             for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Correct).length; i++){ 
                 if(answerCodes[buttonName] == questions[thisQuestionNumber].Correct[i]){
-                    //setPointer(correct);
-                    setResponseScreenText("Correct!");
+                    rotatePointer("correct").then( () => {
+                        setResponseScreenText("Correct!");
+                        setTimeout(nextQuestion, 500);
+                    });
                     found = true;
                     break;
                 }
@@ -132,8 +134,10 @@ function checkAnswer(buttonName){
         if(!found){ //if not found in correct search almost
             for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].Almost).length; i++){
                 if(answerCodes[buttonName] == questions[thisQuestionNumber].Almost[i]){
-                    //setPointer(correct);
-                    setResponseScreenText("Almost!");
+                    rotatePointer("almost").then( () => {
+                        setResponseScreenText("Almost!");
+                        setTimeout(nextQuestion, 500);
+                    });
                     found = true;
                     break;
                 }
@@ -142,19 +146,18 @@ function checkAnswer(buttonName){
         if(!found){ //if not found in correct or almost search false
             for(let i = 0; i <= Object.keys(questions[thisQuestionNumber].False).length; i++){
                 if(answerCodes[buttonName] == questions[thisQuestionNumber].False[i]){
-                    //setPointer(correct);
-                    setResponseScreenText("False!");
+                    rotatePointer("false").then( ()=>{
+                        setResponseScreenText("False!");
+                        setTimeout(nextQuestion, 500);
+                    });
                     found = true;
                     break;
                 }
             }
         }    
-        nextQuestion();
+        
     }
 }
-
-//Ask first question
-nextQuestion();
 
 //Rotates one segment, returns a promise to allow the first segment to finish before chaining the next
 function rotatePointerPromise(angle, animateTo, duration){
@@ -172,12 +175,11 @@ function rotatePointerPromise(angle, animateTo, duration){
 
 
 //jQuery rotate plugin
-//Returns promise to allow rotation to finish before next action is taken
 function rotatePointer(correctness){
-    return new Promise( (resolve)=> {
-        switch(correctness) {
-            case "correct" : 
-                rotatePointerPromise(0,-70,1000)
+    return new Promise( (resolve)=> { //Returns promise to allow rotation to finish before next action is taken
+        switch(correctness) { 
+            case "correct" : //rotate to red, then back to green
+                rotatePointerPromise(0,-70,1000) 
                     .then( ()=>{
                         let currentAngle = $("#pointer").getRotateAngle();
                         rotatePointerPromise(currentAngle,70,1000)
@@ -187,7 +189,7 @@ function rotatePointer(correctness){
                     });
                 break;
             
-            case "almost" : 
+            case "almost" : //rotate to red, then to green, then yellow
                 rotatePointerPromise(0,-70,1000)
                     .then( () => {
                         let currentAngle = $("#pointer").getRotateAngle();
@@ -202,7 +204,7 @@ function rotatePointer(correctness){
                     });
                 break;
             
-            case "false" : 
+            case "false" : //rotate to red, then to green, back to green
                 rotatePointerPromise(0,-70,1000)
                     .then( ()=>{
                         let currentAngle = $("#pointer").getRotateAngle();
@@ -220,11 +222,5 @@ function rotatePointer(correctness){
     });
 }
 
-// rotatePointer("correct").then(
-//     () => {
-//         rotatePointer("almost")
-//             .then( () => {
-//                 rotatePointer("false");
-//             });
-//     });
-
+//Ask first question
+nextQuestion();
