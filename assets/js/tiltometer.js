@@ -175,49 +175,56 @@ function rotatePointerPromise(angle, animateTo, duration){
 //Returns promise to allow rotation to finish before next action is taken
 function rotatePointer(correctness){
     return new Promise( (resolve)=> {
-        if(correctness == "correct"){
-            rotatePointerPromise(0,-70,1000)
-                .then( ()=>{
-                    let currentAngle = $("#pointer").getRotateAngle();
-                    rotatePointerPromise(currentAngle,70,1000)
-                        .then( () => {
-                            resolve();
-                        });
-                });
-        } else if(correctness == "almost"){
-            rotatePointerPromise(0,-70,1000)
-                .then( () => {
-                    let currentAngle = $("#pointer").getRotateAngle();
-                    rotatePointerPromise(currentAngle,70,1000)
-                        .then( ()=> {
-                            let currentAngle = $("#pointer").getRotateAngle();
-                            rotatePointerPromise(currentAngle,-5,1000)
+        switch(correctness) {
+            case "correct" : 
+                rotatePointerPromise(0,-70,1000)
+                    .then( ()=>{
+                        let currentAngle = $("#pointer").getRotateAngle();
+                        rotatePointerPromise(currentAngle,70,1000)
                             .then( () => {
                                 resolve();
                             });
-                        });
-                });
-        } else if(correctness == "false"){
-            rotatePointerPromise(0,-70,1000)
-                .then( ()=>{
-                    let currentAngle = $("#pointer").getRotateAngle();
-                    rotatePointerPromise(currentAngle,70,1000)
-                        .then( () => {
-                            let currentAngle = $("#pointer").getRotateAngle();
-                            rotatePointerPromise(currentAngle,-50,1000)
+                    });
+                break;
+            
+            case "almost" : 
+                rotatePointerPromise(0,-70,1000)
+                    .then( () => {
+                        let currentAngle = $("#pointer").getRotateAngle();
+                        rotatePointerPromise(currentAngle,70,1000)
+                            .then( ()=> {
+                                let currentAngle = $("#pointer").getRotateAngle();
+                                rotatePointerPromise(currentAngle,5,1000)
                                 .then( () => {
                                     resolve();
                                 });
-                        });
-                });
+                            });
+                    });
+                break;
+            
+            case "false" : 
+                rotatePointerPromise(0,-70,1000)
+                    .then( ()=>{
+                        let currentAngle = $("#pointer").getRotateAngle();
+                        rotatePointerPromise(currentAngle,70,1000)
+                            .then( () => {
+                                let currentAngle = $("#pointer").getRotateAngle();
+                                rotatePointerPromise(currentAngle,-50,1000)
+                                    .then( () => {
+                                        resolve();
+                                    });
+                            });
+                    });
+                break;
         }
     });
 }
 
-
-
-// rotatePointer("false").then(
+// rotatePointer("correct").then(
 //     () => {
-//         rotatePointer("correct");
+//         rotatePointer("almost")
+//             .then( () => {
+//                 rotatePointer("false");
+//             });
 //     });
 
