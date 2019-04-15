@@ -156,6 +156,7 @@ function checkAnswer(buttonName){
         }    
         
     }
+    document.getElementById("journal").focus();
 }
 
 //Rotates one segment, returns a promise to allow the first segment to finish before chaining the next
@@ -220,6 +221,8 @@ function rotatePointer(correctness){
         }
     });
 }
+
+document.getElementById("journal").focus();
 
 //Ask first question
 nextQuestion();
