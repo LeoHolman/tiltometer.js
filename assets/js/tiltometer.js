@@ -1,5 +1,3 @@
-$('img[usemap]').imageMap(); //Make image map responsive
-
 const questionScreenText = document.getElementById("questionScreenText");
 const responseScreenText = document.getElementById("responseScreenText");
 const questions = { //list questions and answers
